@@ -18,6 +18,8 @@ produces:
 paths:
   /accounts:
     get:
+      tags:
+        - Accounts
       description: Return accounts by email, username or ids
       operationId: findAccounts
       produces:
