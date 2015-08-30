@@ -53,7 +53,7 @@ paths:
         200:
           description: accounts response
           schema:
-            $ref: '#/definitions/Account'
+            $ref: '#/definitions/AccountsResponse'
         400:
           description: Bad request
           schema:
@@ -87,6 +87,15 @@ definitions:
         type: object
       links:
         type: object
+
+  AccountsResponse:
+    properties:
+      links:
+        type: object
+      accounts:
+        type: array
+        items:
+          $ref: "#/definitions/Account"
   Error:
     required:
       - statusCode
