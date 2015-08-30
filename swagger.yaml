@@ -6,10 +6,10 @@ info:
   title: ElasticAuth Api 
   description: ElasticAuth is a passwordless authentication solution designed to be run on AWS
   version: "1.0.0"
-host: execute-api.us-east-1.amazonaws.com
+host: auth.cinchws.net 
 schemes:
-  - https
   - http
+  - https
 basePath: /
 consumes:
   - application/json
