@@ -1,0 +1,25 @@
+{
+  "name": "elasticauth-lambda",
+  "description": "Elastic Auth Lambda",
+  "version": "1.0.0",
+  "repository": "git://github.com/ryanfitz/elasticauth-lambda",
+  "main": "index",
+  "keywords": [
+    "auth",
+    "AWS",
+    "lambda"
+  ],
+  "engines": {
+    "node": ">=0.10.32"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jshint": "2.x.x",
+    "jshint-stylish": "1.x.x",
+    "swagger-tools": "^0.9.5"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "license": "BSD-3-Clause"
+}

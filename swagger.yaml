@@ -1,0 +1,102 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+---
+swagger: '2.0'
+info:
+  title: ElasticAuth Api 
+  description: ElasticAuth is a passwordless authentication solution designed to be run on AWS
+  version: "1.0.0"
+host: execute-api.us-east-1.amazonaws.com
+schemes:
+  - https
+  - http
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /accounts:
+    get:
+      description: Return accounts by email, username or ids
+      operationId: findAccounts
+      produces:
+        - application/json
+      parameters:
+        - name: ids
+          in: query
+          description: ids of accounts to return
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+        - name: email
+          in: query
+          description: email address of account to return
+          required: false
+          type: string
+        - name: username
+          in: query
+          description: username of account to return
+          required: false
+          type: string
+        - name: fields
+          in: query
+          description: list of fields to include in account response
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+      responses:
+        200:
+          description: accounts response
+          schema:
+            $ref: '#/definitions/Account'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal error
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  Account:
+    properties:
+      id:
+        type: string
+        format: uuid
+      href:
+        type: string
+        format: url
+      name:
+        type: string
+      username:
+        type: string
+      email:
+        type: string
+        format: email
+      metadata:
+        type: object
+      links:
+        type: object
+  Error:
+    required:
+      - statusCode
+      - error
+      - message
+    properties:
+      statusCode:
+        type: integer
+        format: int32
+      error:
+        type: string
+      message:
+        type: string
