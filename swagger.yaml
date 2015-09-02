@@ -70,7 +70,7 @@ paths:
             $ref: '#/definitions/Error'
 
 definitions:
-  Account:
+  AccountResponse:
     properties:
       id:
         type: string
@@ -101,7 +101,7 @@ definitions:
       accounts:
         type: array
         items:
-          $ref: "#/definitions/Account"
+          $ref: "#/definitions/AccountResponse"
   Error:
     required:
       - statusCode
