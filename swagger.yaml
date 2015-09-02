@@ -87,8 +87,12 @@ definitions:
         format: email
       metadata:
         type: object
+        additionalProperties:
+          type: string
       links:
         type: object
+        additionalProperties:
+          type: string
 
   AccountsResponse:
     properties:
