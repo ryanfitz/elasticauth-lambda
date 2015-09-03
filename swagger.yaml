@@ -96,6 +96,46 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
+  /accounts/{accountId}:
+    get:
+      tags:
+        - Accounts
+      description: Return account by Id
+      operationId: getAccountById
+      produces:
+        - application/json
+      parameters:
+        - name: accountId
+          in: path
+          description: Id of account to fetch
+          required: true
+          type: string
+        - name: fields
+          in: query
+          description: list of fields to include in account response
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+      responses:
+        200:
+          description: accounts response
+          schema:
+            $ref: '#/definitions/AccountsResponse'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal error
+          schema:
+            $ref: '#/definitions/Error'
+
 definitions:
   AccountResponse:
     properties:
