@@ -86,7 +86,7 @@ paths:
         201:
           description: account created response
           schema:
-            $ref: '#/definitions/AccountsResponse'
+            $ref: '#/definitions/CreateAccountResponse'
         400:
           description: Bad request
           schema:
@@ -131,6 +131,26 @@ definitions:
         additionalProperties:
           type: string
 
+  TokenResponse:
+    properties:
+      href:
+        type: string
+        format: url
+      access:
+        type: string
+      expires:
+        type: integer
+      type:
+        type: string
+      refresh:
+        type: string
+      cognitoId:
+        type: string
+      cognitoToken:
+        type: string
+      links:
+        type: object
+
   AccountsResponse:
     properties:
       links:
@@ -139,6 +159,22 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/AccountResponse"
+
+  CreateAccountResponse:
+    properties:
+      links:
+        type: object
+      accounts:
+        type: array
+        items:
+          $ref: "#/definitions/AccountResponse"
+      linked:
+        type: object
+        properties:
+          tokens:
+            type: array
+            items:
+              $ref: "#/definitions/TokenResponse"
 
   NewAccount:
     required:
