@@ -6,7 +6,7 @@ info:
   title: ElasticAuth Api 
   description: ElasticAuth is a passwordless authentication solution designed to be run on AWS
   version: "1.0.0"
-host: auth.cinchws.net 
+host: auth-service-jgjfpv9gvy.elasticbeanstalk.com
 schemes:
   - http
   - https
@@ -68,6 +68,33 @@ paths:
           description: Internal error
           schema:
             $ref: '#/definitions/Error'
+    post:
+      tags:
+        - Accounts
+      description: Create a new account
+      operationId: createAccount
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: account to create
+          required: true
+          schema:
+            $ref: "#/definitions/NewAccount"
+      responses:
+        201:
+          description: account created response
+          schema:
+            $ref: '#/definitions/AccountsResponse'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal error
+          schema:
+            $ref: '#/definitions/Error'
 
 definitions:
   AccountResponse:
@@ -102,6 +129,27 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/AccountResponse"
+
+  NewAccount:
+    required:
+      - email
+      - username
+    properties:
+      id:
+        type: string
+        format: uuid
+      name:
+        type: string
+      username:
+        type: string
+      email:
+        type: string
+        format: email
+      metadata:
+        type: object
+        additionalProperties:
+          type: string
+
   Error:
     required:
       - statusCode
